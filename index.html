@@ -56,7 +56,7 @@
 const map = L.map('map', { zoomControl: false }).setView([-16.5, -65.5], 6);
 L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.jpg', {
   attribution: '&copy; OSM | Data: ABC Bolivia',
   maxZoom: 18
 }).addTo(map);
@@ -68,8 +68,8 @@ const roads = [
     color: "#e60000",
     category: "critical",
     desc: "\"Death Road\" - 200-300 muertes/año historicamente. 3m de ancho, precipicios de 600m, sin barandas. La Paz a Coroico.",
-    img: "img/road1.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road1.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Chuspipata - Yavichucho (La Paz)",
@@ -77,8 +77,8 @@ const roads = [
     color: "#e60000",
     category: "critical",
     desc: "Zona de construccion activa. Desvios obligatorios, un solo carril con precaucion. Conecta con region de Yungas.",
-    img: "img/road2.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road2.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Llavini (Autopista La Paz - El Alto)",
@@ -86,8 +86,8 @@ const roads = [
     color: "#e60000",
     category: "critical",
     desc: "Sector critico en autopista La Paz-El Alto. Daño por deslizamiento temporada de lluvias 2025. Semanas de reparacion necesarias.",
-    img: "img/road3.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road3.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Caranavi (La Paz)",
@@ -95,8 +95,8 @@ const roads = [
     color: "#e60000",
     category: "critical",
     desc: "Sector critico identificado por ABC marzo 2025. Derrumbe severo por lluvias. Cierre temporal de via Santa Barbara-Caranavi-Quiquibey (marzo 2026). 15 muertos en deslizamiento previo.",
-    img: "img/road4.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road4.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Puente Santa Barbara (Yungas)",
@@ -104,8 +104,8 @@ const roads = [
     color: "#e60000",
     category: "critical",
     desc: "PUENTE COLAPSADO. Ruta alterna establecida para acceder a comunidades de Yungas.",
-    img: "img/road5.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road5.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Rio Seco - Huarina (La Paz)",
@@ -113,8 +113,8 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Sector critico. Ruta al Lago Titicaca. Daño recurrente por inundaciones/lluvias.",
-    img: "img/road6.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road6.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Toro Toro (Potosi)",
@@ -122,8 +122,8 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Sector critico identificado por ABC marzo 2025. Area remota, acceso dificil en temporada de lluvias.",
-    img: "img/road3.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road3.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Villa Montes: La Central - San Antonio (Tarija)",
@@ -131,8 +131,8 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Perdida de plataforma. En mantenimiento. Solo vehiculos medianos con precaucion.",
-    img: "img/road4.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road4.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Santo Domingo - Monte Grande (Beni)",
@@ -140,8 +140,8 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "NO TRANSITABLE. Trazo de carretera en evaluacion de alternativas. Restriccion vehicular vigente.",
-    img: "img/road5.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road5.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Cotapata - Santa Barbara (La Paz)",
@@ -149,8 +149,8 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Nueva carretera de Yungas. Deslizamientos y neblina. Reemplazo del Camino de la Muerte pero aun peligrosa en temporada de lluvias.",
-    img: "img/road6.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road6.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Cochabamba - Oriente",
@@ -158,8 +158,8 @@ const roads = [
     color: "#ffcc00",
     category: "moderate",
     desc: "22 puntos de bloqueo durante crisis 2024. Conflictos sociales recurrentes y deslizamientos. Sectores Bulo Bulo, Locotal, Tutimayu.",
-    img: "img/road2.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road2.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Cochabamba - Occidente",
@@ -167,8 +167,8 @@ const roads = [
     color: "#ffcc00",
     category: "moderate",
     desc: "Bloqueos recurrentes en Sipe Sipe, Cabanas, Parotani. Zona de conflictos sociales.",
-    img: "img/road3.png",
-    credit: "OpenStreetMap - Vista del area"
+    img: "img/road3.jpg",
+    credit: "Esri World Imagery - Satelite"
   },
   {
     name: "Caracollo (Oruro - La Paz)",
