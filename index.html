@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bolivia - Most Problematic Roads (Red Vial Fundamental)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  #map { height: 100vh; width: 100%; }
+  .legend {
+    background: white; padding: 12px 16px; border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); line-height: 1.8; font-size: 13px;
+    max-width: 220px;
+  }
+  .legend h4 { margin: 0 0 8px 0; font-size: 14px; color: #333; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 2px solid rgba(0,0,0,0.3); }
+  .title-bar {
+    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    z-index: 1000; background: rgba(0,0,0,0.85); color: white;
+    padding: 10px 24px; border-radius: 8px; text-align: center;
+    font-size: 16px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .title-bar small { display: block; font-weight: normal; font-size: 11px; color: #ccc; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="title-bar">
+  🇧🇴 Bolivia - Carreteras Mas Problematicas
+  <small>Red Vial Fundamental (ABC) | Fuentes: ABC, ATB, Red Uno</small>
+</div>
+<div id="map"></div>
+<script>
+const map = L.map('map').setView([-16.5, -65.5], 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors | Data: ABC Bolivia',
+  maxZoom: 18
+}).addTo(map);
+
+const roads = [
+  // CRITICAL - Historically most dangerous / currently problematic
+  {
+    name: "North Yungas Road (El Camino de la Muerte)",
+    coords: [[-16.30, -68.03], [-16.18, -67.82], [-16.22, -67.73]],
+    color: "#e60000",
+    category: "critical",
+    desc: "\"Death Road\" - 200-300 deaths/year historically. 3m wide, 600m cliffs, no guardrails. La Paz to Coroico. Replaced by new road but old route still used."
+  },
+  {
+    name: "Chuspipata - Yavichucho (La Paz)",
+    coords: [[-16.32, -68.01], [-16.28, -67.90], [-16.25, -67.83]],
+    color: "#e60000",
+    category: "critical",
+    desc: "Active construction zone. Detours required, single-lane with precaution. Connects to Yungas region."
+  },
+  {
+    name: "Llavini (La Paz - El Alto Autopista)",
+    coords: [[-16.52, -68.12], [-16.50, -68.10]],
+    color: "#e60000",
+    category: "critical",
+    desc: "Critical sector on La Paz-El Alto highway. Landslide damage from 2025 rainy season. Weeks of repair needed."
+  },
+  {
+    name: "Caranavi (La Paz)",
+    coords: [[-15.83, -67.57]],
+    color: "#e60000",
+    category: "critical",
+    desc: "Critical sector identified by ABC March 2025. Severe rain damage, landslides."
+  },
+  // HIGH RISK - Recurring problems
+  {
+    name: "Rio Seco - Huarina (La Paz)",
+    coords: [[-16.48, -68.18], [-16.20, -68.63]],
+    color: "#ff6600",
+    category: "high",
+    desc: "Critical sector. Route to Lake Titicaca. Recurring flood/rain damage."
+  },
+  {
+    name: "Toro Toro (Potosi)",
+    coords: [[-18.13, -65.77]],
+    color: "#ff6600",
+    category: "high",
+    desc: "Critical sector identified by ABC March 2025. Remote area, difficult access during rainy season."
+  },
+  {
+    name: "Villa Montes: La Central - San Antonio (Tarija)",
+    coords: [[-21.25, -63.47], [-21.15, -63.35]],
+    color: "#ff6600",
+    category: "high",
+    desc: "Platform loss (perdida de plataforma). Under maintenance. Medium vehicles only with precaution."
+  },
+  {
+    name: "Santo Domingo - Monte Grande (Beni)",
+    coords: [[-14.80, -65.20], [-14.50, -65.00]],
+    color: "#ff6600",
+    category: "high",
+    desc: "NOT PASSABLE. Road alignment under evaluation of alternatives. Vehicle restriction in effect."
+  },
+  {
+    name: "Puente Santa Barbara (Yungas, La Paz)",
+    coords: [[-16.35, -67.85]],
+    color: "#e60000",
+    category: "critical",
+    desc: "Bridge collapsed. Alternate route established to access Yungas communities."
+  },
+  // MODERATE - Seasonal / recurring issues
+  {
+    name: "Cochabamba - Oriente Highway",
+    coords: [[-17.39, -66.16], [-17.35, -65.50], [-17.40, -64.80]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "22 blockade points during 2024 crisis. Recurring social conflicts and landslides. Bulo Bulo, Locotal, Tutimayu sectors."
+  },
+  {
+    name: "Cochabamba - Occidente Highway",
+    coords: [[-17.39, -66.16], [-17.42, -66.60], [-17.50, -67.00]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "Recurring blockades at Sipe Sipe, Cabanas, Parotani. Social conflict zone."
+  },
+  {
+    name: "Caracollo (Oruro - La Paz)",
+    coords: [[-17.63, -67.22]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "Recurring blockade point on Oruro-La Paz corridor."
+  },
+  {
+    name: "Ventilla (Oruro - Potosi)",
+    coords: [[-18.45, -66.05]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "Recurring blockade point on Oruro-Potosi corridor."
+  },
+  {
+    name: "Ocuri - Rio Tahuareja (Potosi)",
+    coords: [[-18.87, -65.78], [-18.90, -65.70]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "Blockade point at Soratiri. Potosi department."
+  },
+  {
+    name: "Portachuelo - Buena Vista (Santa Cruz)",
+    coords: [[-17.35, -63.39], [-17.45, -63.65]],
+    color: "#ffcc00",
+    category: "moderate",
+    desc: "Blockade points at entrance to Portachuelo and Santa Rosa (Km 83)."
+  },
+  {
+    name: "Cotapata - Santa Barbara (La Paz)",
+    coords: [[-16.30, -68.00], [-16.20, -67.90]],
+    color: "#ff6600",
+    category: "high",
+    desc: "New Yungas highway. Landslides and fog. Replacement for Death Road but still hazardous in rainy season."
+  }
+];
+
+// Department capitals for reference
+const cities = [
+  { name: "La Paz", coords: [-16.50, -68.15] },
+  { name: "Santa Cruz", coords: [-17.78, -63.18] },
+  { name: "Cochabamba", coords: [-17.39, -66.16] },
+  { name: "Sucre", coords: [-19.04, -65.26] },
+  { name: "Oruro", coords: [-17.96, -67.11] },
+  { name: "Potosi", coords: [-19.58, -65.75] },
+  { name: "Tarija", coords: [-21.53, -64.73] },
+  { name: "Trinidad (Beni)", coords: [-14.83, -64.90] },
+  { name: "Cobija (Pando)", coords: [-11.03, -68.77] }
+];
+
+cities.forEach(c => {
+  L.marker(c.coords, {
+    icon: L.divIcon({
+      className: 'city-label',
+      html: `<div style="background:rgba(255,255,255,0.9);padding:2px 6px;border-radius:4px;font-size:11px;font-weight:bold;white-space:nowrap;border:1px solid #666;">${c.name}</div>`,
+      iconSize: [0, 0],
+      iconAnchor: [-10, 10]
+    })
+  }).addTo(map);
+});
+
+roads.forEach(r => {
+  const weight = r.category === 'critical' ? 6 : r.category === 'high' ? 5 : 4;
+  const opacity = 0.85;
+  
+  if (r.coords.length === 1) {
+    // Single point - use circle marker
+    L.circleMarker(r.coords[0], {
+      radius: r.category === 'critical' ? 12 : 10,
+      color: r.color,
+      fillColor: r.color,
+      fillOpacity: 0.7,
+      weight: 3
+    }).bindPopup(`<b>${r.name}</b><br><span style="color:${r.color};font-weight:bold;">${r.category.toUpperCase()}</span><br><br>${r.desc}`).addTo(map);
+  } else {
+    // Multi-point - draw polyline
+    L.polyline(r.coords, {
+      color: r.color,
+      weight: weight,
+      opacity: opacity
+    }).bindPopup(`<b>${r.name}</b><br><span style="color:${r.color};font-weight:bold;">${r.category.toUpperCase()}</span><br><br>${r.desc}`).addTo(map);
+    
+    // Add marker at midpoint
+    const mid = r.coords[Math.floor(r.coords.length / 2)];
+    L.circleMarker(mid, {
+      radius: 6,
+      color: r.color,
+      fillColor: r.color,
+      fillOpacity: 0.9,
+      weight: 2
+    }).bindPopup(`<b>${r.name}</b><br><span style="color:${r.color};font-weight:bold;">${r.category.toUpperCase()}</span><br><br>${r.desc}`).addTo(map);
+  }
+});
+
+// Legend
+const legend = L.control({ position: 'bottomright' });
+legend.onAdd = function() {
+  const div = L.DomUtil.create('div', 'legend');
+  div.innerHTML = `
+    <h4>Nivel de Problema</h4>
+    <div class="legend-item"><span class="legend-dot" style="background:#e60000"></span> Critico (derrumbes, colapsos)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff6600"></span> Alto (restriccion vehicular)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ffcc00"></span> Moderado (bloqueos, conflictos)</div>
+    <br>
+    <small>Fuentes: ABC, ATB Digital, Red Uno<br>
+    460+ emergencias atendidas (2024-2025)<br>
+    292 problemas en red vial (Plan de Lluvias)</small>
+  `;
+  return div;
+};
+legend.addTo(map);
+
+// Info panel
+const info = L.control({ position: 'topright' });
+info.onAdd = function() {
+  const div = L.DomUtil.create('div', 'legend');
+  div.innerHTML = `
+    <h4>📊 Resumen</h4>
+    <b>Sectores criticos:</b> 4 (Llavini, Caranavi, Rio Seco-Huarina, Toro Toro)<br>
+    <b>No transitable:</b> Santo Domingo-Monte Grande (Beni)<br>
+    <b>Puente colapsado:</b> Santa Barbara (Yungas)<br>
+    <b>Emergencias atendidas:</b> 460+<br>
+    <b>Inversion Plan de Lluvias:</b> Bs 41.1M<br>
+    <small>Click en las rutas para mas detalles</small>
+  `;
+  return div;
+};
+info.addTo(map);
+</script>
+</body>
+</html>
