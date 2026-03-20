@@ -230,7 +230,7 @@ roads.forEach(r => {
   popupHtml += '<span class="severity ' + r.category + '">' + r.category.toUpperCase() + '</span>';
   popupHtml += '<p>' + r.desc + '</p>';
   if (r.img) {
-    popupHtml += '<img src="' + r.img + '" alt="' + r.name + '" loading="lazy" onerror="this.style.display=\'none\'">';
+    popupHtml += '<a href="' + r.img + '" target="_blank"><img src="' + r.img + '" alt="' + r.name + '" loading="lazy" onerror="this.style.display=\'none\'" style="cursor:pointer;"></a>';
     popupHtml += '<div class="photo-credit">' + (r.credit || '') + '</div>';
   }
   popupHtml += '</div>';
