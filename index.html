@@ -56,7 +56,7 @@
 const map = L.map('map', { zoomControl: false }).setView([-16.5, -65.5], 6);
 L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.jpg', {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OSM | Data: ABC Bolivia',
   maxZoom: 18
 }).addTo(map);
@@ -113,7 +113,7 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Sector critico. Ruta al Lago Titicaca. Daño recurrente por inundaciones/lluvias.",
-    img: "img/road6.jpg",
+    img: "img/road7.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -122,7 +122,7 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Sector critico identificado por ABC marzo 2025. Area remota, acceso dificil en temporada de lluvias.",
-    img: "img/road3.jpg",
+    img: "img/road8.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -131,7 +131,7 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Perdida de plataforma. En mantenimiento. Solo vehiculos medianos con precaucion.",
-    img: "img/road4.jpg",
+    img: "img/road9.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -149,7 +149,7 @@ const roads = [
     color: "#ff6600",
     category: "high",
     desc: "Nueva carretera de Yungas. Deslizamientos y neblina. Reemplazo del Camino de la Muerte pero aun peligrosa en temporada de lluvias.",
-    img: "img/road6.jpg",
+    img: "img/road10.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -158,7 +158,7 @@ const roads = [
     color: "#ffcc00",
     category: "moderate",
     desc: "22 puntos de bloqueo durante crisis 2024. Conflictos sociales recurrentes y deslizamientos. Sectores Bulo Bulo, Locotal, Tutimayu.",
-    img: "img/road2.jpg",
+    img: "img/road11.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -167,7 +167,7 @@ const roads = [
     color: "#ffcc00",
     category: "moderate",
     desc: "Bloqueos recurrentes en Sipe Sipe, Cabanas, Parotani. Zona de conflictos sociales.",
-    img: "img/road3.jpg",
+    img: "img/road12.jpg",
     credit: "Esri World Imagery - Satelite"
   },
   {
@@ -175,28 +175,36 @@ const roads = [
     coords: [[-17.63, -67.22]],
     color: "#ffcc00",
     category: "moderate",
-    desc: "Punto de bloqueo recurrente en corredor Oruro-La Paz."
+    desc: "Punto de bloqueo recurrente en corredor Oruro-La Paz.",
+    img: "img/road13.jpg",
+    credit: "Esri Satellite"
   },
   {
     name: "Ventilla (Oruro - Potosi)",
     coords: [[-18.45, -66.05]],
     color: "#ffcc00",
     category: "moderate",
-    desc: "Punto de bloqueo recurrente en corredor Oruro-Potosi."
+    desc: "Punto de bloqueo recurrente en corredor Oruro-Potosi.",
+    img: "img/road14.jpg",
+    credit: "Esri Satellite"
   },
   {
     name: "Ocuri - Rio Tahuareja (Potosi)",
     coords: [[-18.87, -65.78], [-18.90, -65.70]],
     color: "#ffcc00",
     category: "moderate",
-    desc: "Punto de bloqueo en Soratiri. Departamento de Potosi."
+    desc: "Punto de bloqueo en Soratiri. Departamento de Potosi.",
+    img: "img/road15.jpg",
+    credit: "Esri Satellite"
   },
   {
     name: "Portachuelo - Buena Vista (Santa Cruz)",
     coords: [[-17.35, -63.39], [-17.45, -63.65]],
     color: "#ffcc00",
     category: "moderate",
-    desc: "Puntos de bloqueo en entrada a Portachuelo y Santa Rosa (Km 83)."
+    desc: "Puntos de bloqueo en entrada a Portachuelo y Santa Rosa (Km 83).",
+    img: "img/road16.jpg",
+    credit: "Esri Satellite"
   }
 ];
 
